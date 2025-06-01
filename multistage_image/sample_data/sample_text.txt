@@ -1,0 +1,1 @@
+This is a sample text about how great Docker is for machine learning deployment. It makes things so much easier to share and run consistently across different environments. However, sometimes the image sizes can become quite large, which is something we need to optimize for faster builds and deployments. Overall, I find Docker to be an invaluable tool in the MLOps workflow.

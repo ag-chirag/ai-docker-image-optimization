@@ -1,0 +1,25 @@
+# Core ML Dependencies 
+transformers==4.52.3
+torch==2.7.0
+torchvision==0.22.0
+torchaudio==2.7.0
+
+# Web Framework for Server
+flask==2.3.3
+
+# Dev dependencies
+pandas 
+numpy==1.26.4 
+requests==2.32.3 
+pillow 
+scikit-learn 
+
+# Test/Analysis Dependencies (definitely dev)
+pytest 
+jupyter 
+ipython 
+matplotlib 
+seaborn 
+black 
+flake8 
+mypy 

@@ -1,0 +1,6 @@
+# Runtimedependencies, only what's needed to run the inference
+transformers==4.52.3
+torch==2.7.0
+flask==2.3.3
+numpy==1.26.4
+requests==2.32.3

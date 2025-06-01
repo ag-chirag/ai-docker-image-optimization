@@ -1,0 +1,40 @@
+# slim_image/Dockerfile.fixed
+# This version shows the proper way to handle build dependencies in slim images
+# Install build tools temporarily, then remove them in the same layer
+
+FROM python:3.10-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy requirements and dummy extension
+COPY slim_image/requirements.txt ./requirements.txt
+COPY slim_image/dummy_c_extension/ ./dummy_c_extension/
+
+# Install build dependencies, Python packages, then clean up - ALL IN ONE LAYER
+# This is crucial: doing it in one RUN command keeps the final image small
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    # Essential build tools for C compilation
+    build-essential \
+    gcc \
+    # Python development headers (needed for C extensions)
+    python3-dev \
+    # Now install Python packages
+    && pip install --no-cache-dir -r requirements.txt \
+    # Install our dummy C extension (this would fail without build tools)
+    && pip install --no-cache-dir ./dummy_c_extension/ \
+    # Clean up build dependencies to keep image small
+    && apt-get purge -y --auto-remove \
+        build-essential \
+        gcc \
+        python3-dev \
+    # Remove package lists and cache
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /root/.cache/pip
+
+# Copy application code and data
+COPY slim_image/app/ ./app/
+COPY slim_image/sample_data/ ./sample_data/
+
+# Command to run the application
+CMD ["python", "app/predictor.py", "sample_data/sample_text.txt"]

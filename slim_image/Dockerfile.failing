@@ -1,0 +1,22 @@
+# slim_image/Dockerfile.failing
+# This version demonstrates what happens when you naively switch to slim
+# without considering build dependencies - IT WILL FAIL!
+
+# Naive switch: just change python:3.10 to python:3.10-slim
+FROM python:3.10-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy *all* files from the build context (same as naive approach)
+COPY . .
+
+# First install the regular requirements
+RUN pip install --no-cache-dir -r slim_image/requirements.txt
+
+# This will FAIL because our dummy C extension requires gcc
+# which is not available in the slim image
+RUN pip install --no-cache-dir slim_image/dummy_c_extension/
+
+# Command to run the application
+CMD ["python", "app/predictor.py", "sample_data/sample_text.txt"]
