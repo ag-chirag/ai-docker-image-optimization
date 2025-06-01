@@ -12,7 +12,6 @@ The core application code remains stable at the top level of the repository. Eac
 
 This repository is structured to keep core application code in a single location while demonstrating different Docker optimization approaches.
 
-*   `sample_data/`: Contains sample input files used by the demo application for inference.
 *   `naive_image/`: Contains the initial, unoptimized Docker implementation as a baseline.
 *   `slim_image/`: Contains optimized Dockerfile demonstrating base image optimization.
 *   `multistage_image/`: Contains Dockerfile implementing multi-stage builds.
