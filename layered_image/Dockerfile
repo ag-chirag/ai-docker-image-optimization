@@ -1,5 +1,3 @@
-# This version demonstrates chaining RUN commands and aggressive cleanup.
-
 # ====== BUILD STAGE ======
 # Use a full Python image for building/compiling dependencies
 FROM python:3.10 AS builder
@@ -30,14 +28,18 @@ COPY layered_image/runtime_requirements.txt ./runtime_requirements.txt
 # LAYER OPTIMIZATION: Install runtime dependencies and clean up in a single layer
 # Chain commands to avoid creating intermediate layers with temporary files
 # This aggressive cleanup removes caches, bytecode, and temp files, saving ~100MB
-RUN pip install --no-cache-dir -r runtime_requirements.txt && \
-    pip cache purge && \
-    rm -rf /tmp/* /var/tmp/* && \
+# RUN pip install --no-cache-dir -r runtime_requirements.txt && \
+#     pip cache purge && \
+#     rm -rf /tmp/* /var/tmp/* && \
+#     find /usr/local/lib/python*/site-packages/ -name "*.pyc" -delete && \
+#     find /usr/local/lib/python*/site-packages/ -name "__pycache__" -type d -exec rm -rf {} + || true
+
+RUN pip install --no-cache-dir -r runtime_requirements.txt 
+RUN pip cache purge 
+RUN rm -rf /tmp/* /var/tmp/* && \
     find /usr/local/lib/python*/site-packages/ -name "*.pyc" -delete && \
     find /usr/local/lib/python*/site-packages/ -name "__pycache__" -type d -exec rm -rf {} + || true
 
-# DOCKERIGNORE OPTIMIZATION: Copy application code and data
-# The .dockerignore file excludes unnecessary files (docs, tests, other posts, etc.)
 COPY layered_image/app/ ./app/
 COPY layered_image/sample_data/ ./sample_data/
 

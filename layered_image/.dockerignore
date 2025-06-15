@@ -1,5 +1,3 @@
-# Comprehensive .dockerignore to minimize build context
-
 # Version control
 .git/
 .gitignore

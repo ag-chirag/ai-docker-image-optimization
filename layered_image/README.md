@@ -1,10 +1,8 @@
 # Layer Optimization - Docker Layer Surgery for AI Images
 
-This version demonstrates how to optimize Docker layers through intelligent command chaining, cleanup operations, and layer structure improvements to minimize image bloat while maintaining full functionality.
+This project demonstrates how to optimize Docker layers through intelligent command chaining, cleanup operations, and layer structure improvements to minimize image bloat while maintaining full functionality.
 
-## Purpose
-
-This iteration focuses on **Docker layer optimization techniques** that go beyond dependency management. We chain RUN commands, implement aggressive cleanup, remove temporary files, and structure layers for maximum efficiency and caching benefits.
+We chain RUN commands, implement aggressive cleanup, remove temporary files, and structure layers for maximum efficiency and caching benefits.
 
 ## 🔧 Layer Optimization Techniques
 
