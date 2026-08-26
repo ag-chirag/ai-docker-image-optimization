@@ -18,3 +18,10 @@ This repository is structured to keep core application code in a single location
 *   `layered_image/`: Contains Dockerfile illustrating RUN command chaining and layer optimization.
 *   `distroless_image/`: Contains Dockerfile using Google's distroless images for maximum security.
 *   `models_image/`: Contains Dockerfile exploring model management strategies within Docker.
+
+## Reading
+1. https://www.infoq.com/articles/docker-size-dive/
+2. https://dzone.com/articles/docker-image-optimization-slim-multistage
+3. https://dzone.com/articles/trim-docker-images-speed-up-builds
+4. https://hackernoon.com/how-to-make-docker-builds-faster-with-layer-caching
+5. https://hackernoon.com/deploying-transformers-in-production-simpler-than-you-think
